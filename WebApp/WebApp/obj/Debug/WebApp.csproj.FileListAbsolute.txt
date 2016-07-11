@@ -1,0 +1,6 @@
+D:\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.dll.config
+D:\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.dll
+D:\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.pdb
+D:\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
+D:\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.dll
+D:\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.pdb
