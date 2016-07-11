@@ -1,4 +1,5 @@
-﻿// include plug-ins
+﻿/// <binding BeforeBuild='default' />
+// include plug-ins
 var gulp = require("gulp");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
@@ -26,7 +27,7 @@ gulp.task("scripts", ["clean"], function () {
       .pipe(gulp.dest("app/"));
 });
 
-gulp.task("default", ["scripts"], function () { });
+gulp.task("default", ["scripts", "compileOwnLess", "concatVendorCss", "concatOwnCss"], function () { });
 
 gulp.task("compileOwnLess", function () {
     return gulp.src("Content/styles/own/**/*.less")
