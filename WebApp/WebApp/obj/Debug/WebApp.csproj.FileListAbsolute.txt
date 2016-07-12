@@ -3,4 +3,3 @@ D:\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.dll
 D:\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.pdb
 D:\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.dll
 D:\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.pdb
-D:\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache

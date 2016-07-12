@@ -6,7 +6,6 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     path = require("path"),
     debug = require("gulp-debug"),
-    stripDebug = require("gulp-strip-debug"),
     gutil = require("gulp-util");
 
 var config = {
@@ -31,21 +30,21 @@ var __dirname,
     debugMode = false;
 
 gulp.task("clean", function () {
-    return del(["app/out/all.min.js", "app/out/vendorScripts.min.js"]);
+    return del(["app/out/appScripts.min.js", "app/out/vendorScripts.min.js"]);
 });
 
 gulp.task("cleanCss", function () {
     return del([config.cssOutSrc]);
 });
 
-gulp.task("appScripts", ["clean"], function () {
+gulp.task("appScripts", function () {
     return gulp.src(config.appSrc)
       .pipe(uglify())
       .pipe(concat("appScripts.min.js"))
       .pipe(gulp.dest(config.outSrc));
 });
 
-gulp.task("vendorScripts", ["clean"], function () {
+gulp.task("vendorScripts", function () {
     return gulp.src(config.vendorScriptsSrcWithOrder)
         .pipe(debug({ title: "vendorScripts:" }))
         .pipe(uglify())
@@ -53,13 +52,17 @@ gulp.task("vendorScripts", ["clean"], function () {
         .pipe(gulp.dest(config.outSrc));
 });
 
-gulp.task("stripDebug", function () {
-    return gulp.src("app/**/*.js")
-          .pipe(stripDebug())
-          .pipe(gulp.dest("app/out"));
+gulp.task("compileScripts", ["clean"], function () {
+    gulp.start("vendorScripts");
+    gulp.start("appScripts");
 });
 
-gulp.task("default", ["vendorScripts", "appScripts", "compileOwnLess", "concatVendorCss", "concatOwnCss", "stripDebug"], function () {
+gulp.task("concatStyles", ["cleanCss", "compileOwnLess"], function () {
+    gulp.start("concatVendorCss");
+    gulp.start("concatOwnCss");
+});
+
+gulp.task("default", ["compileScripts", "concatStyles"], function () {
     debugMode = debugMode || false;
 });
 
