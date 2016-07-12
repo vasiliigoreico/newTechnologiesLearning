@@ -19,7 +19,10 @@ var config = {
         "scripts/toastr.js",
         "scripts/moment.js",
         "scripts/ui-bootstrap-tpls-0.10.0.js",
-        "scripts/spin.js"]
+        "scripts/spin.js"],
+    ownLessSrc: "Content/styles/own/**",
+    outSrc: "app/out",
+    cssOutSrc: "app/out/css"
 }
 
 //delete the output file(s)
@@ -27,42 +30,47 @@ gulp.task("clean", function () {
     return del(["app/out/all.min.js", "app/out/vendorScripts.min.js"]);
 });
 
+gulp.task("cleanCss", function () {
+    return del([config.cssOutSrc]);
+});
+
 gulp.task("appScripts", ["clean"], function () {
     return gulp.src(config.appSrc)
       .pipe(uglify())
       .pipe(concat("appScripts.min.js"))
-      .pipe(gulp.dest("app/out"));
+      .pipe(gulp.dest(config.outSrc));
 });
 
 gulp.task("vendorScripts", ["clean"], function () {
     return gulp.src(config.vendorScriptsSrcWithOrder)
       .pipe(uglify())
       .pipe(concat("vendorScripts.min.js"))
-      .pipe(gulp.dest("app/out"));
+      .pipe(gulp.dest(config.outSrc));
 });
 
 gulp.task("default", ["vendorScripts", "appScripts", "compileOwnLess", "concatVendorCss", "concatOwnCss"], function () { });
 
-gulp.task("compileOwnLess", function () {
-    return gulp.src("Content/styles/own/**/*.less")
+gulp.task("compileOwnLess", ["cleanCss"], function () {
+    return gulp.src(config.ownLessSrc + "/*.less")
       .pipe(less({
           paths: [path.join(__dirname, "less", "includes")]
       }))
-      .pipe(gulp.dest("app/out/css"));
+      .pipe(gulp.dest(config.cssOutSrc));
 });
 
 gulp.task("concatVendorCss", function () {
     return gulp.src("Content/styles/vendors/*.css")
       .pipe(concat("vendor-bundle.css"))
-      .pipe(gulp.dest("app/out"));
+      .pipe(gulp.dest(config.cssOutSrc));
 });
 
-gulp.task("concatOwnCss", function () {
+gulp.task("concatOwnCss", ["compileOwnLess"], function () {
     return gulp.src("app/out/css/*.css")
       .pipe(concat("own-bundle.css"))
-      .pipe(gulp.dest("app/out"));
+      .pipe(gulp.dest(config.cssOutSrc));
 });
 
 gulp.task("watch", function () {
-    return gulp.watch(config.appSrc, ["appScripts"]);
+    gulp.watch(config.appSrc, ["appScripts"]);
+    gulp.watch(config.ownLessSrc, ["compileOwnLess"]);
 });

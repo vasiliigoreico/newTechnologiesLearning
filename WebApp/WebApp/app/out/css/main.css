@@ -4,3 +4,6 @@ body {
 body header {
   background: red;
 }
+body h1 {
+  line-height: normal;
+}
