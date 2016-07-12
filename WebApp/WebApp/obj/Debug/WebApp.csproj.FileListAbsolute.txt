@@ -3,3 +3,10 @@ D:\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.dll
 D:\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.pdb
 D:\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.dll
 D:\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.pdb
+D:\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
+C:\Source\LearnProject\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.dll.config
+C:\Source\LearnProject\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.dll
+C:\Source\LearnProject\newTechnologiesLearning\WebApp\WebApp\bin\WebApp.pdb
+C:\Source\LearnProject\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.csprojResolveAssemblyReference.cache
+C:\Source\LearnProject\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.dll
+C:\Source\LearnProject\newTechnologiesLearning\WebApp\WebApp\obj\Debug\WebApp.pdb

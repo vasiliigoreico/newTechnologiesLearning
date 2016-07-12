@@ -65,6 +65,7 @@
     <Content Include="app\out\css\own-bundle.css" />
     <Content Include="app\out\css\vendor-bundle.css" />
     <Content Include="app\out\vendorScripts.min.js" />
+    <Content Include="dest\tsCompiled\compiledTSOutput.js" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />

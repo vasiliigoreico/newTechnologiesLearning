@@ -6,6 +6,7 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     path = require("path"),
     debug = require("gulp-debug"),
+stripDebug = require("gulp-strip-debug"),
     gutil = require("gulp-util"),
     ts = require("gulp-typescript");
 
@@ -42,6 +43,7 @@ gulp.task("cleanCss", function () {
 gulp.task("appScripts", function () {
     return gulp.src(config.appSrc)
       .pipe(uglify())
+      .pipe(stripDebug())
       .pipe(concat("appScripts.min.js"))
       .pipe(gulp.dest(config.outSrc));
 });
@@ -64,7 +66,7 @@ gulp.task("concatStyles", ["cleanCss", "compileOwnLess"], function () {
     gulp.start("concatOwnCss");
 });
 
-gulp.task("default", ["compileScripts", "concatStyles"], function () {
+gulp.task("default", ["compileScripts", "concatStyles", "compileTS"], function () {
     debugMode = debugMode || false;
 });
 
@@ -113,5 +115,5 @@ gulp.task("compileTS", function () {
             experimentalAsyncFunctions: true,
             experimentalDecorators: true
         }))
-        .pipe(gulp.dest("app/out/tsCompiled"));
+        .pipe(gulp.dest("dest/tsCompiled"));
 });
