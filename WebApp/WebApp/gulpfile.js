@@ -1,33 +1,47 @@
 ﻿/// <binding BeforeBuild='default' />
-// include plug-ins
-var gulp = require("gulp");
-var concat = require("gulp-concat");
-var uglify = require("gulp-uglify");
-var del = require("del");
-var less = require("gulp-less");
-var path = require("path");
+var gulp = require("gulp"),
+    concat = require("gulp-concat"),
+    uglify = require("gulp-uglify"),
+    del = require("del"),
+    less = require("gulp-less"),
+    path = require("path"),
+    debug = require("gulp-debug");
 
 var config = {
-    src: ["app/**/*.js", "!app/**/*.min.js"]
+    appSrc: ["app/**/*.js", "!app/**/*.min.js"],
+    vendorScriptsSrcWithOrder: [
+        "scripts/jquery-3.1.0.js",
+        "scripts/angular.js",
+        "scripts/angular-animate.js",
+        "scripts/angular-route.js",
+        "scripts/angular-sanitize.js",
+        "scripts/bootstrap.js",
+        "scripts/toastr.js",
+        "scripts/moment.js",
+        "scripts/ui-bootstrap-tpls-0.10.0.js",
+        "scripts/spin.js"]
 }
 
 //delete the output file(s)
 gulp.task("clean", function () {
-    return del(["app/all.min.js"]);
+    return del(["app/out/all.min.js", "app/out/vendorScripts.min.js"]);
 });
 
-// Combine and minify all files from the app folder
-// This tasks depends on the clean task which means gulp will ensure that the 
-// Clean task is completed before running the scripts task.
-gulp.task("scripts", ["clean"], function () {
-
-    return gulp.src(config.src)
+gulp.task("appScripts", ["clean"], function () {
+    return gulp.src(config.appSrc)
       .pipe(uglify())
-      .pipe(concat("all.min.js"))
-      .pipe(gulp.dest("app/"));
+      .pipe(concat("appScripts.min.js"))
+      .pipe(gulp.dest("app/out"));
 });
 
-gulp.task("default", ["scripts", "compileOwnLess", "concatVendorCss", "concatOwnCss"], function () { });
+gulp.task("vendorScripts", ["clean"], function () {
+    return gulp.src(config.vendorScriptsSrcWithOrder)
+      .pipe(uglify())
+      .pipe(concat("vendorScripts.min.js"))
+      .pipe(gulp.dest("app/out"));
+});
+
+gulp.task("default", ["vendorScripts", "appScripts", "compileOwnLess", "concatVendorCss", "concatOwnCss"], function () { });
 
 gulp.task("compileOwnLess", function () {
     return gulp.src("Content/styles/own/**/*.less")
@@ -50,5 +64,5 @@ gulp.task("concatOwnCss", function () {
 });
 
 gulp.task("watch", function () {
-    return gulp.watch(config.src, ["scripts"]);
+    return gulp.watch(config.appSrc, ["appScripts"]);
 });
