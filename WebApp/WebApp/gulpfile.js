@@ -6,6 +6,7 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     path = require("path"),
     debug = require("gulp-debug"),
+    stripDebug = require("gulp-strip-debug"),
     gutil = require("gulp-util");
 
 var config = {
@@ -40,6 +41,7 @@ gulp.task("cleanCss", function () {
 gulp.task("appScripts", function () {
     return gulp.src(config.appSrc)
       .pipe(uglify())
+      .pipe(stripDebug())
       .pipe(concat("appScripts.min.js"))
       .pipe(gulp.dest(config.outSrc));
 });
