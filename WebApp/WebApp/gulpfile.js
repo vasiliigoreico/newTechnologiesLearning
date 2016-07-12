@@ -5,7 +5,8 @@ var gulp = require("gulp"),
     del = require("del"),
     less = require("gulp-less"),
     path = require("path"),
-    debug = require("gulp-debug");
+    debug = require("gulp-debug"),
+    gutil = require("gulp-util");
 
 var config = {
     appSrc: ["app/**/*.js", "!app/**/*.min.js"],
@@ -24,6 +25,9 @@ var config = {
     outSrc: "app/out",
     cssOutSrc: "app/out/css"
 }
+
+var __dirname,
+    debugMode = false;
 
 //delete the output file(s)
 gulp.task("clean", function () {
@@ -48,7 +52,15 @@ gulp.task("vendorScripts", ["clean"], function () {
       .pipe(gulp.dest(config.outSrc));
 });
 
-gulp.task("default", ["vendorScripts", "appScripts", "compileOwnLess", "concatVendorCss", "concatOwnCss"], function () { });
+gulp.task("default", ["vendorScripts", "appScripts", "compileOwnLess", "concatVendorCss", "concatOwnCss"], function() {
+    debugMode = debugMode || false;
+});
+
+gulp.task("debugMode", function () {
+    debugMode = true;
+    gutil.log(gutil.colors.green("RUNNING IN DEBUG MODE"));
+    gulp.start("default");
+});
 
 gulp.task("compileOwnLess", ["cleanCss"], function () {
     return gulp.src(config.ownLessSrc + "/*.less")
