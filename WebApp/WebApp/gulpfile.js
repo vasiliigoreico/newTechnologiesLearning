@@ -29,7 +29,6 @@ var config = {
 var __dirname,
     debugMode = false;
 
-//delete the output file(s)
 gulp.task("clean", function () {
     return del(["app/out/all.min.js", "app/out/vendorScripts.min.js"]);
 });
@@ -47,9 +46,10 @@ gulp.task("appScripts", ["clean"], function () {
 
 gulp.task("vendorScripts", ["clean"], function () {
     return gulp.src(config.vendorScriptsSrcWithOrder)
-      .pipe(uglify())
-      .pipe(concat("vendorScripts.min.js"))
-      .pipe(gulp.dest(config.outSrc));
+        .pipe(debug({ title: "vendorScripts:" }))
+        .pipe(uglify())
+        .pipe(concat("vendorScripts.min.js"))
+        .pipe(gulp.dest(config.outSrc));
 });
 
 gulp.task("default", ["vendorScripts", "appScripts", "compileOwnLess", "concatVendorCss", "concatOwnCss"], function() {
@@ -64,6 +64,7 @@ gulp.task("debugMode", function () {
 
 gulp.task("compileOwnLess", ["cleanCss"], function () {
     return gulp.src(config.ownLessSrc + "/*.less")
+      .pipe(debug({ title: "compileOwnLess:" }))
       .pipe(less({
           paths: [path.join(__dirname, "less", "includes")]
       }))
@@ -72,14 +73,16 @@ gulp.task("compileOwnLess", ["cleanCss"], function () {
 
 gulp.task("concatVendorCss", function () {
     return gulp.src("Content/styles/vendors/*.css")
-      .pipe(concat("vendor-bundle.css"))
-      .pipe(gulp.dest(config.cssOutSrc));
+        .pipe(debug({ title: "concatVendorCss:" }))
+        .pipe(concat("vendor-bundle.css"))
+        .pipe(gulp.dest(config.cssOutSrc));
 });
 
 gulp.task("concatOwnCss", ["compileOwnLess"], function () {
     return gulp.src("app/out/css/*.css")
-      .pipe(concat("own-bundle.css"))
-      .pipe(gulp.dest(config.cssOutSrc));
+        .pipe(debug({ title: "concatOwnCss:" }))
+        .pipe(concat("own-bundle.css"))
+        .pipe(gulp.dest(config.cssOutSrc));
 });
 
 gulp.task("watch", function () {
