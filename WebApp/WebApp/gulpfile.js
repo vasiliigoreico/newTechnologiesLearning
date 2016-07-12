@@ -30,7 +30,7 @@ var __dirname,
     debugMode = false;
 
 gulp.task("clean", function () {
-    return del(["app/out/appScripts.min.js", "app/out/vendorScripts.min.js"]);
+    return del(["app/out/*/*.*"]);
 });
 
 gulp.task("cleanCss", function () {
