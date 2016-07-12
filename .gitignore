@@ -794,8 +794,4 @@
 /WebApp/packages/jQuery.3.0.0.1/Content/Scripts/jquery-3.0.0.slim.min.js
 /WebApp/packages/jQuery.3.0.0.1/Content/Scripts/jquery-3.0.0.slim.min.map
 /WebApp/packages/jQuery.3.0.0.1/jQuery.3.0.0.1.nupkg
-/WebApp/.vs/WebApp/v14/.suo
-/WebApp/WebApp/WebApp.csproj.user
-/WebApp/.vs/config/applicationhost.config
-/WebApp/WebApp/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-/WebApp/WebApp/obj/Debug/WebApp.csprojResolveAssemblyReference.cache
+
