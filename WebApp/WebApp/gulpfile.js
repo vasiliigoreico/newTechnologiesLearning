@@ -6,6 +6,7 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     path = require("path"),
     debug = require("gulp-debug"),
+    stripDebug = require("gulp-strip-debug"),
     gutil = require("gulp-util");
 
 var config = {
@@ -52,7 +53,13 @@ gulp.task("vendorScripts", ["clean"], function () {
       .pipe(gulp.dest(config.outSrc));
 });
 
-gulp.task("default", ["vendorScripts", "appScripts", "compileOwnLess", "concatVendorCss", "concatOwnCss"], function() {
+gulp.task("stripDebug", function () {
+    return gulp.src("app/**/*.js")
+          .pipe(stripDebug())
+          .pipe(gulp.dest("app/out"));
+});
+
+gulp.task("default", ["vendorScripts", "appScripts", "compileOwnLess", "concatVendorCss", "concatOwnCss", "stripDebug"], function () {
     debugMode = debugMode || false;
 });
 
