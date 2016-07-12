@@ -6,7 +6,8 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     path = require("path"),
     debug = require("gulp-debug"),
-    gutil = require("gulp-util");
+    gutil = require("gulp-util"),
+    ts = require("gulp-typescript");
 
 var config = {
     appSrc: ["app/**/*.js", "!app/**/*.min.js"],
@@ -23,7 +24,8 @@ var config = {
         "scripts/spin.js"],
     ownLessSrc: "Content/styles/own/**",
     outSrc: "app/out",
-    cssOutSrc: "app/out/css"
+    cssOutSrc: "app/out/css",
+    typescriptSrc: "app/**/*.ts"
 }
 
 var __dirname,
@@ -98,4 +100,18 @@ gulp.task("concatOwnCss", ["compileOwnLess"], function () {
 gulp.task("watch", function () {
     gulp.watch(config.appSrc, ["appScripts"]);
     gulp.watch(config.ownLessSrc, ["compileOwnLess"]);
+});
+
+gulp.task("compileTS", function () {
+    return gulp.src(config.typescriptSrc)
+        .pipe(debug({ title: "compileTS:" }))
+        .pipe(ts({
+            noImplicitAny: true,
+            out: "compiledTSOutput.js",
+            target: "ES6",
+            module: "amd",
+            experimentalAsyncFunctions: true,
+            experimentalDecorators: true
+        }))
+        .pipe(gulp.dest("app/out/tsCompiled"));
 });
