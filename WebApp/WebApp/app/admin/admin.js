@@ -6,6 +6,7 @@
     function admin(common) {
         var vm = this;
         var getLogFn = common.logger.getLogFn;
+
         var log = getLogFn(controllerId);
         
         vm.title = 'Admin';

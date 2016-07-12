@@ -60,9 +60,9 @@
   <ItemGroup>
     <Content Include="app\out\appScripts.min.js" />
     <Content Include="app\out\css\main.css" />
+	<Content Include="app\out\css\own-bundle.css" />
     <Content Include="app\out\css\vendor-bundle.css" />
-    <Content Include="app\out\vendorScripts.min.js" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="app\out\vendorScripts.min.js" />    <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
