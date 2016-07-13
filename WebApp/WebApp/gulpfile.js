@@ -1,5 +1,5 @@
 ﻿/// <binding BeforeBuild='default' />
-//import {Config as config} from './gulp/gulp.config';
+//import {Config as conf} from "./gulp/gulp.config";
 
 var gulp = require("gulp"),
     concat = require("gulp-concat"),
