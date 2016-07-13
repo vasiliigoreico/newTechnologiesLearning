@@ -75,6 +75,8 @@ gulp.task("concatStyles", ["cleanCss", "compileOwnLess"], function () {
     gulp.start("concatOwnCss");
 });
 
+
+gulp.task("default", function () {
     debugMode = debugMode || false;
     gulp.start("compileScripts");
     gulp.start("concatStyles");
