@@ -6,7 +6,7 @@ var gulp = require("gulp"),
     less = require("gulp-less"),
     path = require("path"),
     debug = require("gulp-debug"),
-stripDebug = require("gulp-strip-debug"),
+    stripDebug = require("gulp-strip-debug"),
     gutil = require("gulp-util"),
     ts = require("gulp-typescript");
 
@@ -66,8 +66,11 @@ gulp.task("concatStyles", ["cleanCss", "compileOwnLess"], function () {
     gulp.start("concatOwnCss");
 });
 
-gulp.task("default", ["compileScripts", "concatStyles", "compileTS"], function () {
+gulp.task("default", function () {
     debugMode = debugMode || false;
+    gulp.start("compileScripts");
+    gulp.start("concatStyles");
+    gulp.start("compileTS");
 });
 
 gulp.task("debugMode", function () {
