@@ -71,8 +71,15 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="gulp\gulp.config.js" />
+    <Content Include="gulp\index.js" />
+    <Content Include="gulp\tasks\concatVendorCss.js" />
+    <Content Include="gulp\tasks\toDo.js" />
+    <Content Include="gulp\tasks\concatOwnCss.js" />
+    <Content Include="gulp\tasks\compileOwnLess.js" />
+    <Content Include="gulp\tasks\compileTS.js" />
     <Content Include="packages.config" />
     <Content Include="Content\styles\own\main.less" />
+    <Content Include=".babelrc" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -906,6 +913,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

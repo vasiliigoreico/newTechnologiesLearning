@@ -1,4 +1,4 @@
-﻿export let config = {
+﻿module.exports = {
     appSrc: ["app/**/*.js", "!app/**/*.min.js"],
     vendorScriptsSrcWithOrder: [
         "scripts/jquery-3.1.0.js",

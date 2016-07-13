@@ -1,36 +1,20 @@
-﻿/// <binding BeforeBuild='default' />
-//import {Config as conf} from "./gulp/gulp.config";
+﻿const config = require("./gulp/gulp.config");
+const gulp = require("gulp");
 
-var gulp = require("gulp"),
-    concat = require("gulp-concat"),
+var concat = require("gulp-concat"),
     uglify = require("gulp-uglify"),
     del = require("del"),
-    less = require("gulp-less"),
     path = require("path"),
     debug = require("gulp-debug"),
     stripDebug = require("gulp-strip-debug"),
-    todo = require("gulp-todo"),
     gutil = require("gulp-util"),
     ts = require("gulp-typescript");
 
-var config = {
-    appSrc: ["app/**/*.js", "!app/**/*.min.js"],
-    vendorScriptsSrcWithOrder: [
-        "scripts/jquery-3.1.0.js",
-        "scripts/angular.js",
-        "scripts/angular-animate.js",
-        "scripts/angular-route.js",
-        "scripts/angular-sanitize.js",
-        "scripts/bootstrap.js",
-        "scripts/toastr.js",
-        "scripts/moment.js",
-        "scripts/ui-bootstrap-tpls-0.10.0.js",
-        "scripts/spin.js"],
-    ownLessSrc: "Content/styles/own/**",
-    outSrc: "app/out",
-    cssOutSrc: "app/out/css",
-    typescriptSrc: "app/**/*.ts"
-}
+var compileTS = require("./gulp/tasks/compileTS");
+var compileOwnLess = require("./gulp/tasks/compileOwnLess");
+var concatOwnCss = require("./gulp/tasks/concatOwnCss");
+var toDo = require("./gulp/tasks/toDo");
+var concatVendorCss = require("./gulp/tasks/concatVendorCss");
 
 var __dirname,
     debugMode = false;
@@ -59,12 +43,6 @@ gulp.task("vendorScripts", function () {
         .pipe(gulp.dest(config.outSrc));
 });
 
-gulp.task("todo", function () {
-    gulp.src(config.appSrc)
-        .pipe(todo())
-        .pipe(gulp.dest("./"));
-
-});
 gulp.task("compileScripts", ["clean"], function () {
     gulp.start("vendorScripts");
     gulp.start("appScripts");
@@ -89,44 +67,13 @@ gulp.task("debugMode", function () {
     gulp.start("default");
 });
 
-gulp.task("compileOwnLess", ["cleanCss"], function () {
-    return gulp.src(config.ownLessSrc + "/*.less")
-      .pipe(debug({ title: "compileOwnLess:" }))
-      .pipe(less({
-          paths: [path.join(__dirname, "less", "includes")]
-      }))
-      .pipe(gulp.dest(config.cssOutSrc));
-});
-
-gulp.task("concatVendorCss", function () {
-    return gulp.src("Content/styles/vendors/*.css")
-        .pipe(debug({ title: "concatVendorCss:" }))
-        .pipe(concat("vendor-bundle.css"))
-        .pipe(gulp.dest(config.cssOutSrc));
-});
-
-gulp.task("concatOwnCss", ["compileOwnLess"], function () {
-    return gulp.src("app/out/css/*.css")
-        .pipe(debug({ title: "concatOwnCss:" }))
-        .pipe(concat("own-bundle.css"))
-        .pipe(gulp.dest(config.cssOutSrc));
-});
-
 gulp.task("watch", function () {
     gulp.watch(config.appSrc, ["appScripts"]);
     gulp.watch(config.ownLessSrc, ["compileOwnLess"]);
 });
 
-gulp.task("compileTS", function () {
-    return gulp.src(config.typescriptSrc)
-        .pipe(debug({ title: "compileTS:" }))
-        .pipe(ts({
-            noImplicitAny: true,
-            out: "compiledTSOutput.js",
-            target: "ES6",
-            module: "amd",
-            experimentalAsyncFunctions: true,
-            experimentalDecorators: true
-        }))
-        .pipe(gulp.dest("dest/tsCompiled"));
-});
+gulp.task("compileTS", compileTS);
+gulp.task("compileOwnLess", compileOwnLess);
+gulp.task("concatOwnCss", concatOwnCss);
+gulp.task("todo", toDo);
+gulp.task("concatVendorCss", concatVendorCss);
