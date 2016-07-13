@@ -75,8 +75,10 @@ gulp.task("concatStyles", ["cleanCss", "compileOwnLess"], function () {
     gulp.start("concatOwnCss");
 });
 
-gulp.task("default", ["compileScripts", "concatStyles", "compileTS", "todo"], function () {
     debugMode = debugMode || false;
+    gulp.start("compileScripts");
+    gulp.start("concatStyles");
+    gulp.start("compileTS");
 });
 
 gulp.task("debugMode", function () {
