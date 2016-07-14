@@ -1,21 +1,17 @@
 ﻿const config = require("./gulp/gulp.config");
-const gulp = require("gulp");
+const gulp = require("./gulp")([
+    "compileTS",
+    "compileOwnLess",
+    "concatOwnCss",
+    "todo",
+    "concatVendorCss",
+    "appScripts",
+    "vendorScripts",
+    "cleanCss",
+    "clean"
+]);
 
 var debugMode = false;
-
-var del = require("del"),
-    gutil = require("gulp-util");
-
-gulp.task("compileTS", require("./gulp/tasks/compileTS"));
-gulp.task("compileOwnLess", require("./gulp/tasks/compileOwnLess"));
-gulp.task("concatOwnCss", require("./gulp/tasks/concatOwnCss"));
-gulp.task("todo", require("./gulp/tasks/toDo"));
-gulp.task("concatVendorCss", require("./gulp/tasks/concatVendorCss"));
-gulp.task("appScripts", require("./gulp/tasks/appScripts"));
-gulp.task("vendorScripts", require("./gulp/tasks/vendorScripts"));
-gulp.task("cleanCss", require("./gulp/tasks/cleanCss"));
-gulp.task("clean", require("./gulp/tasks/clean"));
-
 
 gulp.task("default", function () {
     debugMode = debugMode || false;
