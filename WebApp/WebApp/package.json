@@ -4,6 +4,7 @@
   "devDependencies": {
     "del": "^2.2.1",
     "gulp": "^3.9.1",
+    "gulp-cli": "^1.2.1",
     "gulp-concat": "^2.6.0",
     "gulp-debug": "^2.1.2",
     "gulp-less": "^3.1.0",
