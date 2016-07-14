@@ -72,6 +72,10 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="gulp\gulp.config.js" />
     <Content Include="gulp\index.js" />
+    <Content Include="gulp\tasks\clean.js" />
+    <Content Include="gulp\tasks\cleanCss.js" />
+    <Content Include="gulp\tasks\vendorScripts.js" />
+    <Content Include="gulp\tasks\appScripts.js" />
     <Content Include="gulp\tasks\concatVendorCss.js" />
     <Content Include="gulp\tasks\toDo.js" />
     <Content Include="gulp\tasks\concatOwnCss.js" />

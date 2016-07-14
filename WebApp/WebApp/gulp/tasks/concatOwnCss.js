@@ -1,6 +1,7 @@
 ﻿var gulp = require("gulp"),
     debug = require("gulp-debug"),
-    config = require("../gulp.config");
+    config = require("../gulp.config"),
+    concat = require("gulp-concat");
 
 var concatOwnCss = function () {
     return gulp.src("app/out/css/*.css")
@@ -10,5 +11,3 @@ var concatOwnCss = function () {
 }
 
 module.exports = concatOwnCss;
-
-
