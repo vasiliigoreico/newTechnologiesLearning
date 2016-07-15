@@ -14,9 +14,9 @@ const gulp = require("./gulp")([
 
 var debugMode = false;
 
-gulp.task("default", function () {
+gulp.task("default", ["clean", "cleanCss", "compileOwnLess", "concatVendorCss", "compileTS"], function () {
     debugMode = debugMode || false;
-    gulp.start("clean", "cleanCss", "compileOwnLess", "concatVendorCss", "todo", "compileTS", "vendorScripts", "appScripts", "concatOwnCss");
+    gulp.start("todo",  "vendorScripts", "appScripts", "concatOwnCss");
 });
 
 //gulp.task("debugMode", function () {

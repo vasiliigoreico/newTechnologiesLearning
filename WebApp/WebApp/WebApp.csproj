@@ -65,6 +65,8 @@
     <Content Include="app\out\css\own-bundle.css" />
     <Content Include="app\out\css\vendor-bundle.css" />
     <Content Include="app\out\vendorScripts.min.js" />
+    <Content Include="Content\styles\vendors\bootstrap-theme.css" />
+    <Content Include="Content\styles\vendors\bootstrap.css" />
     <Content Include="dest\tsCompiled\compiledTSOutput.js" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -112,8 +114,6 @@
     <Content Include="app\layout\widgetheader.html" />
     <Content Include="app\services\datacontext.js" />
     <Content Include="app\services\directives.js" />
-    <Content Include="Content\styles\vendors\bootstrap-theme.css" />
-    <Content Include="Content\styles\vendors\bootstrap.css" />
     <Content Include="Content\styles\vendors\customtheme.css" />
     <Content Include="Content\styles\vendors\font-awesome.css" />
     <Content Include="Content\styles\vendors\ie10mobile.css" />
