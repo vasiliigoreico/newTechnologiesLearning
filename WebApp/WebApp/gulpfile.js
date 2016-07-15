@@ -1,4 +1,5 @@
-﻿const config = require("./gulp/gulp.config");
+﻿/// <binding BeforeBuild='default' />
+const config = require("./gulp/gulp.config");
 const gulp = require("./gulp")([
     "compileTS",
     "compileOwnLess",
@@ -15,7 +16,7 @@ var debugMode = false;
 
 gulp.task("default", function () {
     debugMode = debugMode || false;
-    gulp.start("clean", "vendorScripts", "appScripts", "cleanCss", "compileOwnLess", "compileTS", "todo", "concatVendorCss", "concatOwnCss");
+    gulp.start("clean", "cleanCss", "compileOwnLess", "concatVendorCss", "todo", "compileTS", "vendorScripts", "appScripts", "concatOwnCss");
 });
 
 //gulp.task("debugMode", function () {

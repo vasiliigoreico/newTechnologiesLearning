@@ -9,7 +9,7 @@
         "scripts/bootstrap.js",
         "scripts/toastr.js",
         "scripts/moment.js",
-        "scripts/ui-bootstrap-tpls-0.10.0.js",
+        "scripts/ui-bootstrap-tpls-1.3.3.js",
         "scripts/spin.js"],
     ownLessSrc: "Content/styles/own/**",
     outSrc: "app/out",

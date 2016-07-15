@@ -1,3 +1,13 @@
+body {
+  background: white;
+}
+body header {
+  background: red;
+}
+body h1 {
+  line-height: normal;
+}
+
 /*!
  * Bootstrap v3.1.1 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.

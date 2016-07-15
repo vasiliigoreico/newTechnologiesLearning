@@ -2,7 +2,7 @@
     config = require("../gulp.config");
 
 var clean = function () {
-    return del(["app/out/*/*.*"]);
+    return del([config.outSrc]);
 }
 
 module.exports = clean;
