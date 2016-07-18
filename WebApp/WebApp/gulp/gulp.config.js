@@ -1,7 +1,7 @@
 ﻿module.exports = {
     appSrc: ["app/**/*.js", "!app/**/*.min.js"],
     vendorScriptsSrcWithOrder: [
-        "scripts/jquery-3.1.0.js",
+        "scripts/jquery-2.2.4.js",
         "scripts/angular.js",
         "scripts/angular-animate.js",
         "scripts/angular-route.js",
